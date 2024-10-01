@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+    db:
+        image: mysql:8
+        container_name: laravel-graphql-db
+        ports:
+            - '${FORWARD_DB_PORT:-3306}:3306'
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 'root'
+            MYSQL_DATABASE: booksql-laravel
+            MYSQL_USER: 'laravel'
+            MYSQL_PASSWORD: 'root'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 1
+        volumes:
+            - 'sail-mysql:/var/lib/mysql'
+volumes:
+    sail-mysql:
+        driver: local
+    sail-redis:
+        driver: local
