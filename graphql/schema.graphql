@@ -20,6 +20,7 @@ type Query {
     books: [Book!]! @all
     book(id: ID @eq): Book @find
     booksByFeatured(featured: Boolean! @eq): [Book!] @all
+    booksByCategory(category_id: Int! @eq): [Book!] @all
     someComplexQuery(search: String!): [Book]
 
     categories: [Category!]! @all
@@ -37,7 +38,6 @@ type Mutation {
     deleteCategory(
         id: ID @rules(apply: ["required"])
     ): Category @field(resolver: "App\\GraphQL\\Mutations\\DeleteCategory")
-
 }
 
 "Account of a person who utilizes this application."
